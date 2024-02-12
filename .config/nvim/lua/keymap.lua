@@ -16,3 +16,5 @@ Map("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
 Map("n", "<leader>w", "<cmd>Telescope buffers<cr>")
 -- No Highlight
 Map("n", "<leader>h", "<cmd>noh<cr>")
+
+Map("n", "<leader>gg", "<cmd>LazyGit<cr>")

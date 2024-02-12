@@ -110,4 +110,12 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+##### PATH 
+export GOROOT=/usr/local/go
+export PATH=${GOROOT}/bin:${PATH}
+export GOPATH=$HOME/Workspace/go
+export PATH=${GOPATH}/bin:${PATH}
+
+
+
 eval "$(starship init zsh)"
