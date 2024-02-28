@@ -18,3 +18,11 @@ Map("n", "<leader>w", "<cmd>Telescope buffers<cr>")
 Map("n", "<leader>h", "<cmd>noh<cr>")
 
 Map("n", "<leader>gg", "<cmd>LazyGit<cr>")
+
+Map("n", "<C-h>", "<C-w>h")
+Map("n", "<C-j>", "<C-w>j")
+Map("n", "<C-k>", "<C-w>k")
+Map("n", "<C-l>", "<C-w>l")
+-- Move a line of text using Alt-j/k ala vscode.
+Map("n", "<A-j>", ":m .+1<CR>==")
+Map("n", "<A-k>", ":m .-2<CR>==")

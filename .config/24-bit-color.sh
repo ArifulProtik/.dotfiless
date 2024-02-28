@@ -1,0 +1,1 @@
+nvim/24-bit-color.sh

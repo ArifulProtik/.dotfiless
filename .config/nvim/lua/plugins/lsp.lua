@@ -1,34 +1,17 @@
 return {
 	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup({
-				ensure_installed = {
-					"lua_ls",
-					"cssls",
-					"html",
-					"gopls",
-					"tsserver",
-					"pyright",
-					"bashls",
-					"jsonls",
-				},
-			})
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		lazy = false,
-		opts = {
-			auto_install = true,
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
-		dependencies = { "folke/neodev.nvim" },
+		dependencies = {
+			-- Automatically install LSPs and related tools to stdpath for neovim
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+
+			-- Useful status updates for LSP.
+			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+			{ "j-hui/fidget.nvim", opts = {} },
+		},
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local servers = {
@@ -39,9 +22,9 @@ return {
 				"bashls",
 				"jsonls",
 				"gopls",
+				"templ",
 			}
 			local lspconfig = require("lspconfig")
-			local icons = require("icons")
 
 			local default_diagnostic_config = {
 				virtual_text = true,
@@ -70,11 +53,22 @@ return {
 			vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 			vim.diagnostic.config(default_diagnostic_config)
 
-			local on_attach = function(client, bufnr)
-				if client.supports_method("textDocument/inlayHint") then
-					vim.lsp.inlay_hint.enable(bufnr, true)
-				end
+			require("mason").setup()
+			local ensure_installed = {
+				"stylua",
+				"prettier",
+				"eslint",
+			}
+			-- copy server table to ensure_installed
+			for _, server in pairs(servers) do
+				table.insert(ensure_installed, server)
 			end
+
+			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+			-- On Attach Function
+
+			local on_attach = function(client, bufnr) end
 
 			-- Pass capabilities to CMP
 			for _, server in pairs(servers) do
