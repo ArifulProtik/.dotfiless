@@ -20,6 +20,8 @@ return {
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			go = { "goimports", "gofumpt" },
+			templ = { "templ" },
+			rs = { "rustfmt" },
 
 			["javascript"] = { "prettier" },
 			["javascriptreact"] = { "prettier" },
