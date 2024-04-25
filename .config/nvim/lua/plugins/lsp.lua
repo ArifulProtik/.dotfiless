@@ -130,6 +130,8 @@ return {
 				"prettier", -- Used to format javascript, typescript, css, etc
 				"goimports",
 				"rustfmt",
+				"golangci-lint",
+				"eslint_d",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -141,6 +143,7 @@ return {
 						if server_name == "rust_analyzer" then
 							return
 						end
+
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,

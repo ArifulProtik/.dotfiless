@@ -1,12 +1,10 @@
 return {
 	{
-		"rose-pine/neovim",
-		name = "rose-pine",
+		"AlexvZyl/nordic.nvim",
+		lazy = false,
+		priority = 1000,
 		config = function()
-			require("rose-pine").setup({
-				transparent = true,
-				vim.cmd("colorscheme rose-pine"),
-			})
+			require("nordic").load()
 		end,
 	},
 }

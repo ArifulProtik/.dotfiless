@@ -116,7 +116,9 @@ export GOROOT=/usr/local/go
 export PATH=${GOROOT}/bin:${PATH}
 export GOPATH=$HOME/Workspace/go
 export PATH=${GOPATH}/bin:${PATH}
-
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 
 eval "$(starship init zsh)"
